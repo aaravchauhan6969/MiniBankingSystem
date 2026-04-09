@@ -1,50 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mini Bank</title>
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css">
+    <title>Banking System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="container">
-  <h1><i class="fas fa-university"></i> Mini Banking</h1>
+<h2>Mini Banking System</h2>
 
-  <div class="form">
-    <input type="text" id="name" placeholder="👤 Enter Name">
-    <input type="number" id="amount" placeholder="💰 Enter Amount">
-    <input type="number" id="id" placeholder="🆔 Account ID">
-  </div>
+<input id="accNo" placeholder="Account No">
+<input id="name" placeholder="Name">
+<input id="balance" placeholder="Balance">
+<button onclick="createAccount()">Create</button>
 
-  <div class="buttons">
-    <button onclick="createAccount()" class="create">
-      <i class="fas fa-user-plus"></i> Create
-    </button>
+<br><br>
 
-    <button onclick="deposit()" class="deposit">
-      <i class="fas fa-arrow-down"></i> Deposit
-    </button>
+<input id="amount" placeholder="Amount">
 
-    <button onclick="withdraw()" class="withdraw">
-      <i class="fas fa-arrow-up"></i> Withdraw
-    </button>
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
 
-    <button onclick="checkBalance()" class="balance">
-      <i class="fas fa-wallet"></i> Balance
-    </button>
-  </div>
+<br><br>
 
-  <!-- Loader -->
-  <div id="loader" class="loader"></div>
+<button onclick="checkBalance()">Check Balance</button>
+<button onclick="showAll()">Show All</button>
+<button onclick="history()">History</button>
+<button onclick="undo()">Undo</button>
 
-  <div class="result-box">
-    <h3 id="result">Result will appear here...</h3>
-  </div>
+<button class="logout" onclick="logout()">Logout</button>
+<pre id="output"></pre>
 </div>
-
 <script src="script.js"></script>
+
+
 </body>
 </html>

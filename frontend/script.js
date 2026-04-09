@@ -1,129 +1,71 @@
-const baseUrl = "http://localhost:8080";
+const url = "http://localhost:3000";
 
-// 🔹 Loader functions
-function showLoader() {
-  document.getElementById("loader").style.display = "block";
-}
-
-function hideLoader() {
-  document.getElementById("loader").style.display = "none";
-}
-
-// 🔹 Clear fields (smart)
-function clearFields(type) {
-  if (type === "create") {
-    document.getElementById("name").value = "";
-  }
-
-  document.getElementById("amount").value = "";
-  document.getElementById("id").value = "";
-}
-
-// 🔹 Create Account
 function createAccount() {
-  showLoader();
-
-  fetch(baseUrl + "/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: document.getElementById("name").value,
-      balance: document.getElementById("amount").value
+    fetch(url + "/create", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            accNo: document.getElementById("accNo").value,
+            name: document.getElementById("name").value,
+            balance: document.getElementById("balance").value
+        })
     })
-  })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("result").innerText =
-      "✅ Account Created! ID: " + data.id;
-
-    clearFields("create");
-    hideLoader();
-  })
-  .catch(err => {
-    document.getElementById("result").innerText =
-      "❌ Error creating account";
-    hideLoader();
-  });
-}
-
-// 🔹 Deposit
-function deposit() {
-  showLoader();
-
-  fetch(baseUrl + "/deposit", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id: document.getElementById("id").value,
-      balance: document.getElementById("amount").value
-    })
-  })
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("result").innerText =
-      "✅ " + data;
-
-    clearFields();
-    hideLoader();
-  })
-  .catch(err => {
-    document.getElementById("result").innerText =
-      "❌ Deposit failed";
-    hideLoader();
-  });
-}
-
-// 🔹 Withdraw
-function withdraw() {
-  showLoader();
-
-  fetch(baseUrl + "/withdraw", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id: document.getElementById("id").value,
-      balance: document.getElementById("amount").value
-    })
-  })
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("result").innerText =
-      "✅ " + data;
-
-    clearFields();
-    hideLoader();
-  })
-  .catch(err => {
-    document.getElementById("result").innerText =
-      "❌ Withdraw failed";
-    hideLoader();
-  });
-}
-
-// 🔹 Check Balance
-function checkBalance() {
-  showLoader();
-
-  const id = document.getElementById("id").value;
-
-  fetch(baseUrl + "/balance/" + id)
     .then(res => res.text())
-    .then(data => {
-      document.getElementById("result").innerText =
-        "💰 Balance: ₹" + data;
+    .then(data => show(data));
+}
 
-      clearFields();
-      hideLoader();
+function deposit() {
+    fetch(url + "/deposit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            accNo: document.getElementById("accNo").value,
+            amount: document.getElementById("amount").value
+        })
     })
-    .catch(err => {
-      document.getElementById("result").innerText =
-        "❌ Failed to fetch balance";
-      hideLoader();
-    });
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function withdraw() {
+    fetch(url + "/withdraw", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            accNo: document.getElementById("accNo").value,
+            amount: document.getElementById("amount").value
+        })
+    })
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function checkBalance() {
+    const accNo = document.getElementById("accNo").value;
+
+    fetch(url + "/balance/" + accNo)
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function showAll() {
+    fetch(url + "/display")
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function history() {
+    fetch(url + "/history")
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function undo() {
+    fetch(url + "/undo", { method: "POST" })
+    .then(res => res.text())
+    .then(data => show(data));
+}
+
+function show(data) {
+    document.getElementById("output").innerText = data;
 }
