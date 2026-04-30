@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// ---------------- LINKED LIST ----------------
 
 struct Account {
     int accNo;
@@ -12,8 +11,6 @@ struct Account {
 };
 
 struct Account* head = NULL;
-
-// ---------------- FILE LOAD ----------------
 
 void loadFromFile() {
     FILE *fp = fopen("accounts.txt", "r");
@@ -36,7 +33,6 @@ void loadFromFile() {
     fclose(fp);
 }
 
-// ---------------- FILE SAVE ----------------
 
 void saveToFile() {
     FILE *fp = fopen("accounts.txt", "w");
@@ -51,7 +47,6 @@ void saveToFile() {
     fclose(fp);
 }
 
-// ---------------- SEARCH ----------------
 
 struct Account* search(int accNo) {
     struct Account* temp = head;
@@ -63,7 +58,6 @@ struct Account* search(int accNo) {
     return NULL;
 }
 
-// ---------------- CREATE ----------------
 
 void createAccount(int accNo, char name[], float balance) {
 
@@ -85,7 +79,6 @@ void createAccount(int accNo, char name[], float balance) {
     printf("Account Created Successfully\n");
 }
 
-// ---------------- STACK ----------------
 
 struct Stack {
     int accNo;
@@ -107,7 +100,6 @@ struct Stack pop() {
     return stack[top--];
 }
 
-// ---------------- QUEUE ----------------
 
 struct Queue {
     int accNo;
@@ -137,7 +129,6 @@ void showHistory() {
     }
 }
 
-// ---------------- OPERATIONS ----------------
 
 void deposit(int accNo, float amount) {
     struct Account* acc = search(accNo);
@@ -187,7 +178,6 @@ void checkBalance(int accNo) {
     }
 }
 
-// ---------------- UNDO ----------------
 
 void undo() {
     if(top == -1) {
@@ -211,7 +201,6 @@ void undo() {
     printf("Undo Successful\n");
 }
 
-// ---------------- DISPLAY ----------------
 
 void displayAll() {
     struct Account* temp = head;
@@ -228,7 +217,6 @@ void displayAll() {
     }
 }
 
-// ---------------- MAIN ----------------
 
 int main(int argc, char *argv[]) {
 
