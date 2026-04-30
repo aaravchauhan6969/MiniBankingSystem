@@ -1,3 +1,5 @@
-102 Shreya 1200.00
-101 Aarav 2000.00
+1 Aarav 600.00
 103 Abid 7620.00
+101 Aarav 5000.00
+102 Shreya 1200.00
+104 harshita 5000.00
