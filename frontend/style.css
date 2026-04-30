@@ -15,7 +15,6 @@ body {
     align-items: center;
 }
 
-/* Container */
 .container {
     width: 450px;
     padding: 25px;
@@ -26,13 +25,11 @@ body {
     color: white;
 }
 
-/* Heading */
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Inputs */
 input {
     width: 100%;
     padding: 12px;
@@ -47,7 +44,6 @@ input::placeholder {
     color: #ccc;
 }
 
-/* Buttons */
 button {
     padding: 12px;
     border: none;
@@ -62,7 +58,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Grid Layout */
+
 .actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -70,7 +66,6 @@ button:hover {
     margin-top: 10px;
 }
 
-/* Output Box */
 #output {
     margin-top: 15px;
     padding: 12px;
@@ -81,7 +76,6 @@ button:hover {
     font-size: 13px;
 }
 
-/* Logout Button */
 .logout {
     background: linear-gradient(45deg, #11998e, #38ef7d);
     margin-top: 10px;

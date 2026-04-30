@@ -6,7 +6,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// 🔥 Helper function
 function runCommand(command, res) {
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -21,7 +20,6 @@ function runCommand(command, res) {
     });
 }
 
-// ---------------- ROUTES ----------------
 
 app.post("/create", (req, res) => {
     const { accNo, name, balance } = req.body;
@@ -54,7 +52,6 @@ app.post("/undo", (req, res) => {
     runCommand(`bank undo`, res);
 });
 
-// ---------------- START SERVER ----------------
 
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
